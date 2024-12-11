@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sauce Selector</title>
+    <style>
+        /* Base styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+            text-align: center;
+        }
+
+        header {
+            background: linear-gradient(to bottom, #6a85b6, #bac8e0);
+            padding: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            color: white;
+            font-size: 2.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        header p {
+            color: #eaeaea;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        /* Button */
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            font-size: 1em;
+            margin: 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #45a049;
+            box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Dropdown */
+        select {
+            padding: 10px;
+            font-size: 1em;
+            margin: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Section styling */
+        #recipeContainer {
+            margin: 20px auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 3D headers */
+        article h2 {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            margin: 0 -20px 20px -20px;
+            font-size: 1.5em;
+            text-transform: uppercase;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 10px 10px 0 0;
+        }
+
+        /* Rounded corners and border for content */
+        ul, ol {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: left;
+            margin: 10px 0;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        ul li, ol li {
+            margin: 10px 0;
+        }
+
+        /* Dynamic backgrounds for sauces */
+        body.default {
+            background: linear-gradient(to bottom, #f0f8ff, #dbe9f4);
+        }
+
+        body.sauce1 {
+            background: linear-gradient(to bottom, #ffcccc, #ffe6e6);
+        }
+
+        body.sauce2 {
+            background: linear-gradient(to bottom, #ffe6cc, #fff2e6);
+        }
+
+        body.sauce3 {
+            background: linear-gradient(to bottom, #e6e6ff, #f2f2ff);
+        }
+
+        body.sauce4 {
+            background: linear-gradient(to bottom, #ccffe6, #e6fff2);
+        }
+
+        body.sauce5 {
+            background: linear-gradient(to bottom, #f4cccc, #fbe9e9);
+        }
+
+        body.sauce6 {
+            background: linear-gradient(to bottom, #f2e6ff, #f9f2ff);
+        }
+
+        body.sauce7 {
+            background: linear-gradient(to bottom, #e6f7ff, #f2fbff);
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const button = document.getElementById("pickSauceBtn");
+            const dropdown = document.getElementById("sauceDropdown");
+            const recipeContainer = document.getElementById("recipeContainer");
+            const sauces = document.querySelectorAll("#sauceContainer > div");
+            const body = document.body;
+
+            // Function to hide all sauces, show the selected one, and update the background
+            function showSauce(index) {
+                recipeContainer.hidden = false;
+                sauces.forEach((sauce) => (sauce.hidden = true));
+                sauces[index].hidden = false;
+
+                // Update background based on the selected sauce
+                body.className = `sauce${index + 1}`;
+            }
+
+            // Button to select a random sauce
+            button.addEventListener("click", () => {
+                const randomIndex = Math.floor(Math.random() * sauces.length);
+                showSauce(randomIndex);
+            });
+
+            // Dropdown menu to select a specific sauce
+            dropdown.addEventListener("change", () => {
+                const selectedIndex = parseInt(dropdown.value, 10);
+                if (!isNaN(selectedIndex)) {
+                    showSauce(selectedIndex);
+                }
+            });
+
+            // Reset to default background before any sauce is selected
+            body.className = "default";
+        });
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Sauce Selector</h1>
+        <p>Click the button to pick a random sauce or select one from the dropdown menu to view its recipe!</p>
+    </header>
+
+    <!-- Button and Dropdown -->
+    <main>
+        <button id="pickSauceBtn">Pick a Random Sauce</button>
+        <label for="sauceDropdown">Choose a Sauce:</label>
+        <select id="sauceDropdown">
+            <option value="" disabled selected>-- Select a Sauce --</option>
+            <option value="0">Original Creamy Sauce</option>
+            <option value="1">Low-Calorie Marinara Sauce</option>
+            <option value="2">Low-Calorie Alfredo Sauce</option>
+            <option value="3">Mild Herb Cream Sauce</option>
+            <option value="4">Smoky BBQ Sauce</option>
+            <option value="5">Cheddar Cheese Sauce</option>
+            <option value="6">Creamy Basil Sauce</option>
+        </select>
+
+        <!-- Recipe Section -->
+        <section id="recipeContainer" hidden>
+            <!-- Shared Ingredients -->
+            <article id="firstPart">
+                <h2>Shared Base Ingredients</h2>
+                <ul>
+                    <li>24 oz Chicken Breast (cut into chunks)</li>
+                    <li>2 Raw Eggs</li>
+                    <li>1 cup Mixed Greens Pack (baby lettuces, greens & radicchio)</li>
+                    <li>1 cup Fresh Spinach (optional)</li>
+                    <li>½ cup Cooked Lentils</li>
+                    <li>2 tablespoons Pumpkin Seeds</li>
+                    <li>1 tablespoon Chia Seeds</li>
+                    <li>1 cup Fat-Free Mozzarella</li>
+                    <li>Garlic Salt (to taste)</li>
+                    <li>Onion Powder (to taste)</li>
+                    <li>½ Fresh Lime (optional, for freshness)</li>
+                </ul>
+            </article>
+
+            <!-- Sauce Recipes -->
+            <article id="sauceContainer">
+                <div id="sauce1" hidden>
+                    <h2>Original Creamy Sauce</h2>
+                    <ul>
+                        <li>1 cup Plain Nonfat Greek Yogurt</li>
+                        <li>2 oz Reduced-Fat Cream Cheese</li>
+                        <li>1 tablespoon Ranch Seasoning</li>
+                        <li>1 cup Chicken Bone Broth</li>
+                    </ul>
+                    <p>Calories: ~480 kcal</p>
+                </div>
+
+                <div id="sauce2" hidden>
+                    <h2>Low-Calorie Marinara Sauce</h2>
+                    <ul>
+                        <li>1 cup Canned Crushed Tomatoes (no salt added)</li>
+                        <li>½ cup Cottage Cheese (0% fat)</li>
+                        <li>1 tablespoon Italian Seasoning</li>
+                        <li>½ cup Chicken Bone Broth</li>
+                    </ul>
+                    <p>Calories: ~400 kcal</p>
+                </div>
+
+                <div id="sauce3" hidden>
+                    <h2>Low-Calorie Alfredo Sauce</h2>
+                    <ul>
+                        <li>½ cup Cottage Cheese (0% fat)</li>
+                        <li>½ cup Unsweetened Almond Milk</li>
+                        <li>2 tablespoons Grated Parmesan Cheese</li>
+                        <li>2 oz Reduced-Fat Cream Cheese</li>
+                        <li>1 tablespoon Garlic Powder</li>
+                    </ul>
+                    <p>Calories: ~450 kcal</p>
+                </div>
+
+                <div id="sauce4" hidden>
+                    <h2>Mild Herb Cream Sauce</h2>
+                    <ul>
+                        <li>1 cup Plain Nonfat Greek Yogurt</li>
+                        <li>2 oz Reduced-Fat Cream Cheese</li>
+                        <li>½ cup Chicken Bone Broth</li>
+                        <li>1 tablespoon Fresh Chopped Parsley or Dill</li>
+                    </ul>
+                    <p>Calories: ~420 kcal</p>
+                </div>
+
+                <div id="sauce5" hidden>
+                    <h2>Smoky BBQ Sauce</h2>
+                    <ul>
+                        <li>1 cup Low-Sugar BBQ Sauce</li>
+                        <li>½ cup Cottage Cheese (0% fat)</li>
+                        <li>1 teaspoon Smoked Paprika</li>
+                        <li>½ teaspoon Garlic Powder</li>
+                    </ul>
+                    <p>Calories: ~430 kcal</p>
+                </div>
+
+                <div id="sauce6" hidden>
+                    <h2>Cheddar Cheese Sauce</h2>
+                    <ul>
+                        <li>1 cup Cottage Cheese (0% fat)</li>
+                        <li>½ cup Unsweetened Almond Milk</li>
+                        <li>½ cup Shredded Cheddar Cheese</li>
+                        <li>½ teaspoon Garlic Powder</li>
+                    </ul>
+                    <p>Calories: ~460 kcal</p>
+                </div>
+
+                <div id="sauce7" hidden>
+                    <h2>Creamy Basil Sauce</h2>
+                    <ul>
+                        <li>1 cup Plain Nonfat Greek Yogurt</li>
+                        <li>1 tablespoon Fresh Basil, Chopped</li>
+                        <li>½ cup Chicken Bone Broth</li>
+                        <li>1 tablespoon Grated Parmesan Cheese</li>
+                    </ul>
+                    <p>Calories: ~440 kcal</p>
+                </div>
+            </article>
+
+            <!-- Full Recipe -->
+            <article id="fullRecipe">
+                <h2>Full Recipe</h2>
+                <ol>
+                    <li>Combine the shared base ingredients and the sauce ingredients in a blender. Blend until smooth.</li>
+                    <li>Pour the mixture into a large nonstick pan.</li>
+                    <li>Cook on low-medium heat for 10 minutes, stirring occasionally, until the chicken is fully cooked (165°F internal temperature).</li>
+                    <li>Crack the eggs directly into the pan and stir gently to integrate them into the mixture.</li>
+                    <li>Sprinkle mozzarella over the top, cover, and cook for 2-3 minutes until the cheese is melted.</li>
+                    <li>Slide the mixture onto a plate or cutting board, slice into 4 portions, and enjoy!</li>
+                </ol>
+            </article>
+        </section>
+    </main>
+</body>
+</html>
