@@ -100,39 +100,6 @@
         ul li, ol li {
             margin: 10px 0;
         }
-
-        /* Dynamic backgrounds for sauces */
-        body.default {
-            background: linear-gradient(to bottom, #f0f8ff, #dbe9f4);
-        }
-
-        body.sauce1 {
-            background: linear-gradient(to bottom, #ffcccc, #ffe6e6);
-        }
-
-        body.sauce2 {
-            background: linear-gradient(to bottom, #ffe6cc, #fff2e6);
-        }
-
-        body.sauce3 {
-            background: linear-gradient(to bottom, #e6e6ff, #f2f2ff);
-        }
-
-        body.sauce4 {
-            background: linear-gradient(to bottom, #ccffe6, #e6fff2);
-        }
-
-        body.sauce5 {
-            background: linear-gradient(to bottom, #f4cccc, #fbe9e9);
-        }
-
-        body.sauce6 {
-            background: linear-gradient(to bottom, #f2e6ff, #f9f2ff);
-        }
-
-        body.sauce7 {
-            background: linear-gradient(to bottom, #e6f7ff, #f2fbff);
-        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -147,9 +114,6 @@
                 recipeContainer.hidden = false;
                 sauces.forEach((sauce) => (sauce.hidden = true));
                 sauces[index].hidden = false;
-
-                // Update background based on the selected sauce
-                body.className = `sauce${index + 1}`;
             }
 
             // Button to select a random sauce
@@ -165,9 +129,6 @@
                     showSauce(selectedIndex);
                 }
             });
-
-            // Reset to default background before any sauce is selected
-            body.className = "default";
         });
     </script>
 </head>
@@ -195,40 +156,19 @@
 
         <!-- Recipe Section -->
         <section id="recipeContainer" hidden>
-            <!-- Shared Ingredients -->
             <article id="firstPart">
                 <h2>Shared Base Ingredients</h2>
                 <ul>
                     <li>24 oz Chicken Breast (cut into chunks)</li>
                     <li>2 Raw Eggs</li>
-                    <li>1 cup Mixed Greens Pack (baby lettuces, greens & radicchio)</li>
-                    <li>1 cup Fresh Spinach (optional)</li>
+                    <li>1 cup Mixed Greens Pack</li>
+                    <li>1 cup Fresh Spinach</li>
                     <li>¾ cup Cooked Lentils</li>
-                    <li>1½ tablespoons Pumpkin Seeds</li>
-                    <li>1 tablespoon Chia Seeds</li>
+                    <li>1 tablespoon Pumpkin Seeds</li>
+                    <li>1 teaspoon Chia Seeds</li>
                     <li>1½ cups Fat-Free Mozzarella</li>
-                    <li>1 tablespoon Ground Flaxseeds</li>
-                    <li>½ teaspoon Turmeric + pinch of Black Pepper</li>
-                    <li>1 teaspoon Grated Ginger</li>
-                    <li>¼ teaspoon Cinnamon</li>
-                    <li>Garlic Salt (to taste)</li>
-                    <li>Onion Powder (to taste)</li>
-                    <li>½ Fresh Lime (optional, for freshness)</li>
                 </ul>
-            </article>
-
-            <!-- Full Cooking Instructions -->
-            <article id="instructions">
-                <h2>Full Recipe Instructions</h2>
-                <ol>
-                    <li>Combine all base ingredients in a large mixing bowl or blender. Blend if necessary.</li>
-                    <li>Heat a large nonstick skillet over low-medium heat.</li>
-                    <li>Add the mixture to the pan and stir occasionally for 8-10 minutes until the chicken is fully cooked (165°F internal temperature).</li>
-                    <li>Whisk the eggs directly into the mixture and cook for 2 minutes, stirring to create a creamy consistency.</li>
-                    <li>Add your selected sauce from below to the pan. Stir well to combine and let simmer for 2-3 minutes.</li>
-                    <li>Top with mozzarella cheese and cover the pan. Allow the cheese to melt before serving.</li>
-                    <li>Divide the dish into 4 portions and enjoy!</li>
-                </ol>
+                <p>Calories for base: 740 total / 185 per serving</p>
             </article>
 
             <!-- Sauce Recipes -->
@@ -240,74 +180,31 @@
                         <li>2 oz Reduced-Fat Cream Cheese</li>
                         <li>1 tablespoon Ranch Seasoning</li>
                         <li>1 cup Chicken Bone Broth</li>
-                        <li>½ teaspoon Turmeric + pinch of Black Pepper</li>
-                        <li>1 teaspoon Grated Ginger</li>
                     </ul>
+                    <p>Calories for sauce: 120 total / 30 per serving</p>
                 </div>
                 <div id="sauce2" hidden>
                     <h2>Low-Calorie Marinara Sauce</h2>
                     <ul>
-                        <li>1 cup Canned Crushed Tomatoes (no salt added)</li>
-                        <li>½ cup Cottage Cheese (0% fat)</li>
+                        <li>1 cup Canned Crushed Tomatoes</li>
+                        <li>½ cup Cottage Cheese</li>
                         <li>1 tablespoon Italian Seasoning</li>
-                        <li>½ cup Chicken Bone Broth</li>
-                        <li>¼ cup Frozen Blueberries (optional, for sweetness)</li>
-                        <li>½ teaspoon Cinnamon</li>
                     </ul>
+                    <p>Calories for sauce: 95 total / 23.75 per serving</p>
                 </div>
-                <div id="sauce3" hidden>
-                    <h2>Low-Calorie Alfredo Sauce</h2>
-                    <ul>
-                        <li>½ cup Cottage Cheese (0% fat)</li>
-                        <li>½ cup Unsweetened Almond Milk</li>
-                        <li>2 tablespoons Grated Parmesan Cheese</li>
-                        <li>2 oz Reduced-Fat Cream Cheese</li>
-                        <li>1 tablespoon Garlic Powder</li>
-                        <li>½ cup Chopped Broccoli</li>
-                    </ul>
-                </div>
-                <div id="sauce4" hidden>
-                    <h2>Mild Herb Cream Sauce</h2>
-                    <ul>
-                        <li>1 cup Plain Nonfat Greek Yogurt</li>
-                        <li>2 oz Reduced-Fat Cream Cheese</li>
-                        <li>½ cup Chicken Bone Broth</li>
-                        <li>1 tablespoon Fresh Chopped Parsley or Dill</li>
-                        <li>½ teaspoon Turmeric + pinch of Black Pepper</li>
-                        <li>¼ teaspoon Cinnamon</li>
-                    </ul>
-                </div>
-                <div id="sauce5" hidden>
-                    <h2>Smoky BBQ Sauce</h2>
-                    <ul>
-                        <li>1 cup Low-Sugar BBQ Sauce</li>
-                        <li>½ cup Cottage Cheese (0% fat)</li>
-                        <li>1 teaspoon Smoked Paprika</li>
-                        <li>½ teaspoon Garlic Powder</li>
-                        <li>½ teaspoon Turmeric</li>
-                        <li>1 tablespoon Ground Flaxseeds</li>
-                    </ul>
-                </div>
-                <div id="sauce6" hidden>
-                    <h2>Cheddar Cheese Sauce</h2>
-                    <ul>
-                        <li>1 cup Cottage Cheese (0% fat)</li>
-                        <li>½ cup Unsweetened Almond Milk</li>
-                        <li>½ cup Shredded Cheddar Cheese</li>
-                        <li>½ teaspoon Garlic Powder</li>
-                        <li>½ cup Chopped Broccoli</li>
-                    </ul>
-                </div>
-                <div id="sauce7" hidden>
-                    <h2>Creamy Basil Sauce</h2>
-                    <ul>
-                        <li>1 cup Plain Nonfat Greek Yogurt</li>
-                        <li>1 tablespoon Fresh Basil, Chopped</li>
-                        <li>½ cup Chicken Bone Broth</li>
-                        <li>1 tablespoon Grated Parmesan Cheese</li>
-                        <li>1 cup Fresh Spinach or Kale (optional)</li>
-                    </ul>
-                </div>
+            </article>
+
+            <!-- Instructions -->
+            <article>
+                <h2>Instructions</h2>
+                <ol>
+                    <li>Combine the shared base ingredients and the sauce ingredients in a blender. Blend until smooth.</li>
+                    <li>Pour the mixture into a large nonstick pan.</li>
+                    <li>Cook on low-medium heat for 10 minutes, stirring occasionally, until the chicken is fully cooked (165°F internal temperature).</li>
+                    <li>Crack the eggs directly into the pan and stir gently to integrate them into the mixture.</li>
+                    <li>Sprinkle mozzarella over the top, cover, and cook for 2-3 minutes until the cheese is melted.</li>
+                    <li>Slide the mixture onto a plate or cutting board, slice into 4 portions, and enjoy!</li>
+                </ol>
             </article>
         </section>
     </main>
